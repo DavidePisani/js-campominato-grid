@@ -44,14 +44,17 @@
         gameRange = 49
     }
     // numero tentativi 
-    const gameAttempts = gameRange - numBombs
-
+    const gameAttempts = 2
+    // gameRange - numBombs
  // richichiamo il generatore di bombe    
     bombs = randomBombsGenerate (numBombs, 1, gameRange)
     console.log(bombs)
 
-    // creo un arrey per calcolare quanti numeri inserisce l'utente 
+    // creo un arrey per calcolare quanti numeri inserisce l'utente
+    // se il numero indicato dall'utente è nell'arrey hai perso
+    // altrimenti lo pushi nell'arrey 
 const rightNumbers = []
+console.log(rightNumbers)
 
 let gameContinue = true
     while(gameContinue){
@@ -60,22 +63,22 @@ let gameContinue = true
 
         if(bombs.includes(userNumber)){
             gameContinue = false
-            alert('Sei ESPLOSO!!!')
+            alert('Sei ESPLOSO!!!il tuo punteggio è: ' + rightNumbers.length)
         } else {
 
-                if
+                if(!rightNumbers.includes (userNumber)){
+                    rightNumbers.push(userNumber)
+                }
+                console.log(rightNumbers)
+
+                if(rightNumbers.length === gameAttempts){
+                    alert('Complimenti non sei esploso! il tuo punteggio è: '+ rightNumbers.length )
+                }
         }
+        
+        
+        
     }
-
-
-
-
-
-
-
-
-
-
     /*--------------
         FUNZIONI
    ----------------- */ 
