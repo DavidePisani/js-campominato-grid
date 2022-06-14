@@ -43,18 +43,37 @@
     } else{
         gameRange = 49
     }
-    // console.log(gameRange)
-
     // numero tentativi 
     const gameAttempts = gameRange - numBombs
-    // console.log(gameAttempts)
+
+ // richichiamo il generatore di bombe    
+    bombs = randomBombsGenerate (numBombs, 1, gameRange)
+    console.log(bombs)
+
+    // creo un arrey per calcolare quanti numeri inserisce l'utente 
+const rightNumbers = []
+
+let gameContinue = true
+    while(gameContinue){
+        // chiedo all'utente di darmi un unemro 
+        const userNumber = parseInt(prompt('Dimmi un numero')) 
+
+        if(bombs.includes(userNumber)){
+            gameContinue = false
+            alert('Sei ESPLOSO!!!')
+        } else {
+
+                if
+        }
+    }
 
 
 
 
 
 
-bombs = randomBombsGenerate (numBombs, 1, gameRange)
+
+
 
 
     /*--------------
@@ -65,20 +84,22 @@ bombs = randomBombsGenerate (numBombs, 1, gameRange)
 // rangeMin = 1 da dove deve iniziare la generazione di numeri 
 // rangeMax = gameRange ( range massimo di numeri generati in base al livello )
 
-function randomBombsGenerate (numberBombs, rangeMin, rangeMax){
-    // arrey dove inserisco le 16 bombe con so
-   arreyBombs = []
+function randomBombsGenerate(numBomb, minRange, maxRange) {
 
-   while( arreyBombs.lenght < numberBombs){
-    // genero 16 numeri casuali 
-    const  genBomb = Math.floor(Math.random() * rangeMax) + rangeMin;
-    console.log(genBomb)
+    // creo arrey
+    const bombsArrey = [];
+     
+    while(bombsArrey.length < numBomb){
+        // richiamo la funzione per generare numeri 
+      let randomBombs = bombsGen(minRange, maxRange)
+      // controlla se quel numero è stato già inserito in bombsArrey
+      if(!bombsArrey.includes(randomBombs)){
+        bombsArrey.push(randomBombs)
+      }
+    }
+    return bombsArrey;
+  }
 
-    if(!arreyBombs.includes(genBomb))
-        arreyBombs.push(genBomb)
-        
-   }
-   console.log(arreyBombs)
-}
-
-
+// funzione per generare numeri random 
+function bombsGen(min, max) {  
+ return Math.floor(Math.random() * (max - min + 1) ) + min; }
