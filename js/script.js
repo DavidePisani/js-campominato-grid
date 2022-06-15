@@ -27,24 +27,28 @@
 
 
     // chiediamo il livello all'utente 
-    const userLevel = prompt('Scegli il livello di gioco tra: 1=facile 2=medio 3=difficile');
+    let userLevel = parseInt(prompt('Scegli il livello di gioco tra: 1=facile 2=medio 3=difficile'));
     // console.log(userLevel)
 
+    // test while---------------------
+    // while(userLevel < 1 || userLevel > 3){
+    //     userLevel = parseInt(prompt('Errore Numero Errato!!!'));
+    // }
+    // ---------------------------------------------------
     // numero di bombe 
     const numBombs = 16
 
     let gameRange;
-    if (userLevel === '1'){
+    if (userLevel === 1){
         gameRange = 100
-    }else if (userLevel === '2'){
+    }else if (userLevel === 2){
         gameRange = 81
     } else if (userLevel === '3') {
         gameRange = 49
-    } else{
-        gameRange = 49
-    }
+    } 
+
     // numero tentativi 
-    const gameAttempts = 2
+    const gameAttempts = numBombs - gameRange
     // gameRange - numBombs
  // richichiamo il generatore di bombe    
     bombs = randomBombsGenerate (numBombs, 1, gameRange)
@@ -68,16 +72,16 @@ let gameContinue = true
 
                 if(!rightNumbers.includes (userNumber)){
                     rightNumbers.push(userNumber)
+
+                }else if (rightNumbers.includes (userNumber)){
+                    alert("Numero gia inserito, RIPROVA")
                 }
                 console.log(rightNumbers)
 
                 if(rightNumbers.length === gameAttempts){
-                    alert('Complimenti non sei esploso! il tuo punteggio è: '+ rightNumbers.length )
+                    alert('Complimenti non sei esploso! il tuo punteggio è: ' + rightNumbers.length )
                 }
-        }
-        
-        
-        
+        }                      
     }
     /*--------------
         FUNZIONI
@@ -90,17 +94,17 @@ let gameContinue = true
 function randomBombsGenerate(numBomb, minRange, maxRange) {
 
     // creo arrey
-    const bombsArrey = [];
+    const bombArrey = [];
      
-    while(bombsArrey.length < numBomb){
+    while(bombArrey.length < numBomb){
         // richiamo la funzione per generare numeri 
       let randomBombs = bombsGen(minRange, maxRange)
       // controlla se quel numero è stato già inserito in bombsArrey
-      if(!bombsArrey.includes(randomBombs)){
-        bombsArrey.push(randomBombs)
+      if(!bombArrey.includes(randomBombs)){
+        bombArrey.push(randomBombs)
       }
     }
-    return bombsArrey;
+    return bombArrey;
   }
 
 // funzione per generare numeri random 
